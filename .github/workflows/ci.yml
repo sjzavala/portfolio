@@ -40,7 +40,7 @@ jobs:
       - name: Stage site
         run: |
           mkdir -p dist
-          cp -r index.html css js assets lab cv dist/
+          cp -r index.html css js assets lab dist/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

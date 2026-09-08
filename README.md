@@ -44,8 +44,12 @@ lab/results.js          generated test results the QA Lab reads (window.LAB_RESU
 e2e/*.spec.js           the Playwright suite, one file per group shown in the lab
 scripts/lab-results.mjs JSON report → lab/results.js
 assets/                 portrait, favicon
-cv/                     résumé PDF linked from the nav
 ```
+
+## Résumé
+
+The résumé is not published. The nav button and the contact section open an email
+request instead, and `cv/` is git-ignored so a PDF dropped there stays local.
 
 ## Editing content
 

@@ -45,14 +45,11 @@ test.describe('Main navigation', () => {
     await expect(page.locator('.hero')).toBeInViewport();
   });
 
-  test('résumé link opens a PDF in a new tab', async ({ page }) => {
+  test('résumé is requested by email rather than served as a file', async ({ page }) => {
     await openMenuIfCollapsed(page);
-    const link = page.locator('.nav-links').getByRole('link', { name: /Résumé/ });
-    await expect(link).toHaveAttribute('href', /\.pdf$/);
-    await expect(link).toHaveAttribute('target', '_blank');
-    const href = await link.getAttribute('href');
-    const res = await page.request.get(href);
-    expect(res.status()).toBe(200);
-    expect(res.headers()['content-type']).toContain('pdf');
+    const link = page.locator('.nav-links').getByRole('link', { name: /Request résumé/ });
+    await expect(link).toHaveAttribute('href', /^mailto:seve\.zavala@gmail\.com\?subject=/);
+    // Nothing on the site should link to a résumé file.
+    await expect(page.locator('a[href$=".pdf"]')).toHaveCount(0);
   });
 });
