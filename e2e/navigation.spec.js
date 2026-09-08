@@ -1,7 +1,7 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-const SECTIONS = ['about', 'expertise', 'qa-lab', 'experience', 'work', 'approach', 'contact'];
+const SECTIONS = ['about', 'expertise', 'qa-lab', 'ai', 'experience', 'work', 'approach', 'contact'];
 
 /** Opens the mobile menu when the toggle is visible; no-op on desktop. */
 async function openMenuIfCollapsed(page) {

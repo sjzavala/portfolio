@@ -26,6 +26,16 @@ test.describe('Projects and external links', () => {
     ]);
   });
 
+  test('AI section links the plugin, the self-healing agent and the swarm benchmark', async ({ page }) => {
+    const hrefs = await page.locator('#ai .card-grid.three a[href*="github.com"]').evaluateAll((els) => els.map((a) => a.getAttribute('href')));
+    expect(hrefs).toEqual([
+      'https://github.com/sjzavala/claude-qa-tms',
+      'https://github.com/sjzavala/self-healing-e2e',
+      'https://github.com/sjzavala/claude-agent-swarm',
+    ]);
+    await expect(page.locator('#ai .rules-list li')).toHaveCount(3);
+  });
+
   test('personal projects section lists two projects with GitHub links', async ({ page }) => {
     const cards = page.locator('#personal .project-card');
     await expect(cards).toHaveCount(2);

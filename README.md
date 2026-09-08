@@ -54,6 +54,7 @@ request instead, and `cv/` is git-ignored so a PDF dropped there stays local.
 ## Editing content
 
 Everything is in `index.html`, in section order: hero, focus strip, about, expertise,
-QA Lab, principles, experience, selected work, personal projects, approach, contact.
+QA Lab, AI in the loop, principles, experience, selected work, personal projects, approach,
+contact.
 Tests in `e2e/links.spec.js` assert the five project cards and their pipeline order, so
 update that spec if you add or reorder projects.
