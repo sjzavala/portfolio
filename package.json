@@ -1,0 +1,19 @@
+{
+  "name": "seve-zavala-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio site for Seve Zavala, Software Developer in Test. Static HTML/CSS/JS with a Playwright suite that tests the page itself.",
+  "scripts": {
+    "start": "http-server -p 4173 -c-1 -s .",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed --project=chromium",
+    "test:ui": "playwright test --ui",
+    "lab:build": "node scripts/lab-results.mjs",
+    "lab": "playwright test && node scripts/lab-results.mjs",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "http-server": "^14.1.1"
+  }
+}
