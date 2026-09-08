@@ -27,7 +27,7 @@ test.describe('Projects and external links', () => {
   });
 
   test('AI section links the plugin, the self-healing agent and the swarm benchmark', async ({ page }) => {
-    const hrefs = await page.locator('#ai .card-grid.three a[href*="github.com"]').evaluateAll((els) => els.map((a) => a.getAttribute('href')));
+    const hrefs = await page.locator('#ai .card-grid.three:not(.ai-production) a[href*="github.com"]').evaluateAll((els) => els.map((a) => a.getAttribute('href')));
     expect(hrefs).toEqual([
       'https://github.com/sjzavala/claude-qa-tms',
       'https://github.com/sjzavala/self-healing-e2e',
