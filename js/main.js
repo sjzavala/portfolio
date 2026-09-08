@@ -142,6 +142,12 @@
 
     const sleep = (t) => new Promise((r) => setTimeout(r, reducedMotion ? 0 : t));
 
+    // Keep the whole replay to roughly five seconds no matter how large the
+    // suite grows, so the animation stays watchable and the lab's own test
+    // isn't racing a clock that moves with every spec we add.
+    const totalLines = groups.reduce((n, g) => n + g.tests.length, 0);
+    const perLine = Math.max(15, Math.min(120, Math.round(5000 / Math.max(totalLines, 1))));
+
     async function runReplay() {
       replay.disabled = true;
       log.textContent = '';
@@ -155,7 +161,7 @@
           const mark = t.status === 'passed' ? '  ✓ ' : t.status === 'skipped' ? '  – ' : '  ✘ ';
           const cls = t.status === 'passed' ? 'log-pass' : t.status === 'skipped' ? 'log-skip' : 'log-fail';
           line(cls, `${mark}[${t.project}] ${t.title} (${ms(t.duration)})`);
-          await sleep(Math.min(140, 40 + t.duration / 40));
+          await sleep(perLine);
         }
       }
 

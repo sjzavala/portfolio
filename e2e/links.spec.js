@@ -34,6 +34,11 @@ test.describe('Projects and external links', () => {
       'https://github.com/sjzavala/claude-agent-swarm',
     ]);
     await expect(page.locator('#ai .rules-list li')).toHaveCount(3);
+    const beyond = await page.locator('#ai .ai-production a[href*="github.com"]').evaluateAll((els) => els.map((a) => a.getAttribute('href')));
+    expect(beyond).toEqual([
+      'https://github.com/sjzavala/adjuster-copilot',
+      'https://github.com/sjzavala/artificer',
+    ]);
   });
 
   test('personal projects section lists two projects with GitHub links', async ({ page }) => {
